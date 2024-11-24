@@ -1,0 +1,5 @@
+require 'latourg.keymaps.commmon'
+require 'latourg.keymaps.term'
+require 'latourg.keymaps.neotest'
+require 'latourg.keymaps.chad'
+require 'latourg.keymaps.telescope'

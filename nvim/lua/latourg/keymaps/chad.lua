@@ -1,0 +1,3 @@
+vim.keymap.set('n', '<C-t>', function()
+  require('nvchad.themes').open()
+end)
