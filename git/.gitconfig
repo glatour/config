@@ -1,0 +1,56 @@
+[core]
+	excludesfile = /Users/latourg/.gitignore_global
+       autocrlf = false
+[user]
+	name = glatour
+	email = guillaume.latour@gmail.com
+
+[commit]
+       template = /Users/latourg/.stCommitMsg
+[merge]
+  keepBackup = false
+       tool = p4merge
+
+[alias]
+  # http://haacked.com/archive/2014/07/28/github-flow-aliases/
+  co = checkout
+  ec = config --global -e
+  cob = checkout -b
+  ci = commit -m
+  cia = !git add -A && git commit -m
+  save = !git add -A && git commit -m 'SAVEPOINT'
+  wip = commit -am "WIP"
+  undo = reset HEAD~1 --mixed
+  amend = commit -a --amend
+  pb = push -u origin
+  pcb = !git rev-parse --abbrev-ref HEAD | xargs git pb
+ 
+       dt = !git difftool
+ 
+  s = status -sb
+ 
+  # branch name to clipboard
+  ccb = !git rev-parse --abbrev-ref HEAD | clip
+ 
+  # graph log
+  ggl = log --oneline --abbrev-commit --all --graph --decorate --color
+ 
+  # diff bc
+  dbc = difftool --dir-diff
+ 
+  gg = !"git gg1"
+  gg1 = !"git lg1-specific"
+  gg2 = !"git lg2-specific"
+  gg3 = !"git lg3-specific"
+ 
+  lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+  lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+  lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)']
+  fdiff = !"git difftool -d -y -g"
+  fresh = !"git clean -d -x -f"
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
