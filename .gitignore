@@ -1,9 +1,9 @@
-tags
-test.sh
-.luarc.json
-nvim
+nvim/tags
+nvim/test.sh
+nvim/.luarc.json
+nvim/nvim
 
-spell/
-lazy-lock.json
+nvim/spell/
+nvim/lazy-lock.json
 
-.elixir-tools
+nvim/.elixir-tools

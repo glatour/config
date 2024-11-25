@@ -68,8 +68,3 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
-
--- vim.g.OmniSharp_diagnostic_overrides = '{"IDE0320": {"type": "None"}}'
-vim.g.OmniSharp_diagnostic_overrides = {
-  IDE0022 = { type = 'none' },
-}

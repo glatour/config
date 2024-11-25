@@ -10,18 +10,23 @@ return {
   },
   config = function()
     -- Diagnostic message setup
+    -- vim.diagnostic.config {
+    --   virtual_text = {
+    --     format = function(diagnostic)
+    --       return string.format('%s: %s', diagnostic.code, diagnostic.message)
+    --     end,
+    --   },
+    --   float = {
+    --     format = function(diagnostic)
+    --       return string.format('%s: %s', diagnostic.code, diagnostic.message)
+    --     end,
+    --   },
+    -- }
+
     vim.diagnostic.config {
-      virtual_text = {
-        format = function(diagnostic)
-          return string.format('%s: %s', diagnostic.code, diagnostic.message)
-        end,
-      },
-      float = {
-        format = function(diagnostic)
-          return string.format('%s: %s', diagnostic.code, diagnostic.message)
-        end,
-      },
+      virtual_text = false,
     }
+
     -- On Lsp Attach, add keymaps and highlight capabilities
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
