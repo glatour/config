@@ -22,6 +22,9 @@ return {
     --     end,
     --   },
     -- }
+    vim.diagnostic.config {
+      virtual_text = false,
+    }
 
     -- On Lsp Attach, add keymaps and highlight capabilities
     vim.api.nvim_create_autocmd('LspAttach', {

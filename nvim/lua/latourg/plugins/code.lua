@@ -7,16 +7,15 @@ return {
       require('tiny-inline-diagnostic').setup()
     end,
   },
-  {
-    'dense-analysis/ale',
-    config = function()
-      -- Configuration goes here.
-      local g = vim.g
-
-      g.ale_ruby_rubocop_auto_correct_all = 1
-      g.ale_virtualtext_cursor = 'disabled'
-    end,
-  },
+  -- {
+  --   'dense-analysis/ale',
+  --   config = function()
+  --     -- Configuration goes here.
+  --     local g = vim.g
+  --
+  --     g.ale_virtualtext_cursor = 'disabled'
+  --   end,
+  -- },
   {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
@@ -141,5 +140,16 @@ return {
         desc = 'Quickfix List (Trouble)',
       },
     },
+  },
+  {
+    'andrewferrier/debugprint.nvim',
+
+    -- opts = { … },
+
+    dependencies = {
+      'echasnovski/mini.nvim', -- Needed for :ToggleCommentDebugPrints (not needed for NeoVim 0.10+)
+    },
+
+    version = '*', -- Remove if you DON'T want to use the stable version
   },
 }
