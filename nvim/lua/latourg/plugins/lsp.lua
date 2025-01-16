@@ -222,6 +222,8 @@ return {
         'html-lsp',
         'prettier',
         'ts_ls',
+        'volar',
+        'ember-language-server',
       }, require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
     require('mason-lspconfig').setup {
