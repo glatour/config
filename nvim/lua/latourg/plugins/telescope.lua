@@ -52,6 +52,9 @@ return {
         --  All the info you're looking for is in `:help telescope.setup()`
         --
         defaults = {
+          path_display = {
+            'truncate',
+          },
           layout_config = {
             horizontal = {
               prompt_position = 'top',
@@ -89,6 +92,7 @@ return {
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
+      -- builtin.find_files { path_display = { 'truncate' } }
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, {
         desc = '[S]earch [H]elp',
       })
@@ -121,6 +125,12 @@ return {
       })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, {
         desc = '[ ] Find existing buffers',
+      })
+      vim.keymap.set('n', '<leader>gs', builtin.git_status, {
+        desc = '[G]it [s]tatus',
+      })
+      vim.keymap.set('n', '<leader>jt', builtin.treesitter, {
+        desc = '[G]it [s]tatus',
       })
 
       vim.keymap.set('n', '<leader>si', function()
