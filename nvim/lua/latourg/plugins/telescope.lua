@@ -129,8 +129,16 @@ return {
       vim.keymap.set('n', '<leader>gs', builtin.git_status, {
         desc = '[G]it [s]tatus',
       })
-      vim.keymap.set('n', '<leader>jt', builtin.treesitter, {
-        desc = '[G]it [s]tatus',
+      vim.keymap.set('n', '<leader>ja', builtin.lsp_document_symbols, { desc = '[J]ump to [a] symbols' })
+      vim.keymap.set('n', '<leader>jw', function()
+        builtin.lsp_workspace_symbols { symbols = { 'class' } }
+      end, {
+        desc = '[J]ump to [c]lass',
+      })
+      vim.keymap.set('n', '<leader>jt', function()
+        builtin.lsp_document_symbols { symbols = { 'method', 'constructor', 'constant', 'function', 'property' } }
+      end, {
+        desc = '[j]ump [t]o file symbols',
       })
 
       vim.keymap.set('n', '<leader>si', function()

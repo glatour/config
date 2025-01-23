@@ -1,4 +1,5 @@
 return {
+  { 'RRethy/vim-illuminate' },
   {
     'miversen33/sunglasses.nvim',
     config = function()
@@ -74,6 +75,27 @@ return {
         follow_current_file = { enabled = true },
       },
     },
+    config = function()
+      require('neo-tree').setup {
+        default_component_configs = {
+          git_status = {
+            symbols = {
+              -- Change type
+              added = '✚',
+              deleted = '✖',
+              modified = '',
+              renamed = '󰁕',
+              -- Status type
+              untracked = '',
+              ignored = '',
+              unstaged = '󰄱',
+              staged = '',
+              conflict = '',
+            },
+          },
+        },
+      }
+    end,
   },
   { 'mrbjarksen/neo-tree-diagnostics.nvim' },
   { 'ChristianChiarulli/neovim-codicons' },

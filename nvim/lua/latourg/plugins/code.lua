@@ -1,21 +1,14 @@
 return {
   {
-    'rachartier/tiny-inline-diagnostic.nvim',
-    event = 'VeryLazy', -- Or `LspAttach`
-    priority = 1000, -- needs to be loaded in first
+    'stevearc/overseer.nvim',
+    opts = {},
     config = function()
-      require('tiny-inline-diagnostic').setup()
+      require('overseer').setup()
+
+      vim.api.nvim_set_keymap('n', '<leader>or', ':OverseerRun<CR>', { noremap = true, silent = true, desc = '[Overseer] [r]un task' })
+      vim.api.nvim_set_keymap('n', '<leader>ot', ':OverseerToggle<CR>', { noremap = true, silent = true, desc = '[Overseer] [t]oggle' })
     end,
   },
-  -- {
-  --   'dense-analysis/ale',
-  --   config = function()
-  --     -- Configuration goes here.
-  --     local g = vim.g
-  --
-  --     g.ale_virtualtext_cursor = 'disabled'
-  --   end,
-  -- },
   {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
@@ -28,7 +21,7 @@ return {
     'hedyhli/outline.nvim',
     config = function()
       -- Example mapping to toggle outline
-      vim.keymap.set('n', '<leader>o', '<cmd>Outline<CR>', { desc = 'Toggle Outline' })
+      vim.keymap.set('n', '<leader>oo', '<cmd>Outline<CR>', { desc = 'Toggle Outline' })
 
       require('outline').setup {
         -- Your setup opts here (leave empty to use defaults)
@@ -39,61 +32,6 @@ return {
     end,
   },
   { 'jose-elias-alvarez/typescript.nvim', lazy = true }, -- add lsp plugin
-  {
-    'hedyhli/outline.nvim',
-    config = function()
-      -- Example mapping to toggle outline
-      vim.keymap.set('n', '<leader>o', '<cmd>Outline<CR>', { desc = 'Toggle Outline' })
-
-      require('outline').setup {
-        -- Your setup opts here (leave empty to use defaults)
-        outline_window = {
-          auto_jump = true,
-        },
-      }
-    end,
-  },
-  { 'RRethy/vim-illuminate' },
-  {
-    'elixir-tools/elixir-tools.nvim',
-    version = '*',
-    event = { 'BufReadPre', 'BufNewFile' },
-    config = function()
-      local elixir = require 'elixir'
-      local elixirls = require 'elixir.elixirls'
-
-      elixir.setup {
-        nextls = {
-          enable = true,
-        },
-        elixirls = {
-          enable = true,
-          settings = elixirls.settings {
-            dialyzerEnabled = false,
-            enableTestLenses = false,
-          },
-          on_attach = function(client, bufnr)
-            vim.keymap.set('n', '<space>fp', ':ElixirFromPipe<cr>', {
-              buffer = true,
-              noremap = true,
-            })
-            vim.keymap.set('n', '<space>tp', ':ElixirToPipe<cr>', {
-              buffer = true,
-              noremap = true,
-            })
-            vim.keymap.set('v', '<space>em', ':ElixirExpandMacro<cr>', {
-              buffer = true,
-              noremap = true,
-            })
-          end,
-        },
-        projectionist = {
-          enable = true,
-        },
-      }
-    end,
-    dependencies = { 'nvim-lua/plenary.nvim' },
-  },
   -- https://github.com/rmagatti/goto-preview
   {
     'rmagatti/goto-preview',
@@ -102,6 +40,14 @@ return {
       require('goto-preview').setup {
         default_mappings = true,
       }
+    end,
+  },
+  {
+    'rachartier/tiny-inline-diagnostic.nvim',
+    event = 'VeryLazy', -- Or `LspAttach`
+    priority = 1000, -- needs to be loaded in first
+    config = function()
+      require('tiny-inline-diagnostic').setup()
     end,
   },
   {
@@ -140,16 +86,5 @@ return {
         desc = 'Quickfix List (Trouble)',
       },
     },
-  },
-  {
-    'andrewferrier/debugprint.nvim',
-
-    -- opts = { … },
-
-    dependencies = {
-      'echasnovski/mini.nvim', -- Needed for :ToggleCommentDebugPrints (not needed for NeoVim 0.10+)
-    },
-
-    version = '*', -- Remove if you DON'T want to use the stable version
   },
 }
