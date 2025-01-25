@@ -59,12 +59,44 @@ return {
         },
       },
       textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ['am'] = { query = '@function.outer', desc = 'Method' },
+            ['im'] = { query = '@function.inner', desc = 'Method definition' },
+            ['ac'] = { query = '@class.outer', desc = 'Class' },
+            ['ic'] = { query = '@class.inner', desc = 'Class definition' },
+            ['ap'] = { query = '@parameter.outer', desc = 'Parameter' },
+            ['ip'] = { query = '@parameter.inner', desc = 'Parameter only' },
+            ['al'] = { query = '@loop.outer', desc = 'Loop' },
+            ['il'] = { query = '@loop.inner', desc = 'Loop definition' },
+          },
+          include_surrounding_whitespace = true,
+        },
         move = {
           enable = true,
-          goto_next_start = { [']f'] = '@function.outer', [']c'] = '@class.outer', [']a'] = '@parameter.inner' },
-          goto_next_end = { [']F'] = '@function.outer', [']C'] = '@class.outer', [']A'] = '@parameter.inner' },
-          goto_previous_start = { ['[f'] = '@function.outer', ['[c'] = '@class.outer', ['[a'] = '@parameter.inner' },
-          goto_previous_end = { ['[F'] = '@function.outer', ['[C'] = '@class.outer', ['[A'] = '@parameter.inner' },
+          set_jumps = true,
+          goto_next_start = {
+            [']m'] = { query = '@function.outer', desc = 'Next method start' },
+            [']]'] = { query = '@class.outer', desc = 'Next class start' },
+            [']p'] = { query = '@parameter.inner', desc = 'Next parameter start' },
+          },
+          goto_next_end = {
+            [']M'] = { query = '@function.outer', desc = 'Next method end' },
+            [']['] = { query = '@class.outer', desc = 'Next class end' },
+            [']P'] = { query = '@parameter.outer', desc = 'Next parameter end' },
+          },
+          goto_previous_start = {
+            ['[m'] = { query = '@function.outer', desc = 'Previous method start' },
+            ['[['] = { query = '@class.outer', desc = 'Previous class start' },
+            ['[p'] = { query = '@parameter.inner', desc = 'Previous parameter start' },
+          },
+          goto_previous_end = {
+            ['[M'] = { query = '@function.outer', desc = 'Previous method end' },
+            ['[]'] = { query = '@class.outer', desc = 'Previous class end' },
+            ['[P'] = { query = '@parameter.outer', desc = 'Previous parameter end' },
+          },
         },
       },
     },

@@ -58,7 +58,7 @@ return {
           layout_config = {
             horizontal = {
               prompt_position = 'top',
-              preview_width = 0.60,
+              preview_width = 0.55,
             },
             width = 0.90,
             height = 0.85,
@@ -67,9 +67,22 @@ return {
             i = {
               ['<c-enter>'] = 'to_fuzzy_refine',
               ['<C-é>'] = 'which_key',
-              ['<c-d>'] = require('telescope.actions').delete_buffer,
+              -- ['<c-d>'] = require('telescope.actions').delete_buffer,
+              ["<C-b>"] = function(...)
+                return require("telescope.actions").delete_buffer(...)
+              end,
             },
+            n = {
+              ["<C-b>"] = function(...)
+                return require("telescope.actions").delete_buffer(...)
+              end,
+            }
           },
+        },
+        pickers = {
+          -- find_files = {
+          --     theme = "ivy",
+          -- }
         },
         -- pickers = {
         --   find_files = {
@@ -114,6 +127,12 @@ return {
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, {
         desc = '[S]earch [D]iagnostics',
       })
+      vim.keymap.set(
+        "n",
+        "<leader>sde",
+        function() require("telescope.builtin").diagnostics({ severity = "error" }) end,
+        { desc = "[S]earch [D]iagnostics [E]rror" }
+      )
       vim.keymap.set('n', '<leader>st', builtin.treesitter, {
         desc = '[S]earch [T]reesitter',
       })
@@ -129,11 +148,16 @@ return {
       vim.keymap.set('n', '<leader>gs', builtin.git_status, {
         desc = '[G]it [s]tatus',
       })
-      vim.keymap.set('n', '<leader>ja', builtin.lsp_document_symbols, { desc = '[J]ump to [a] symbols' })
-      vim.keymap.set('n', '<leader>jw', function()
+      vim.keymap.set('n', '<leader>js', builtin.lsp_document_symbols, { desc = '[J]ump to a [s]ymbols in active buffer' })
+      vim.keymap.set('n', '<leader>jwc', function()
         builtin.lsp_workspace_symbols { symbols = { 'class' } }
       end, {
-        desc = '[J]ump to [c]lass',
+        desc = '[J]ump to [w]orkspace [c]lass',
+      })
+      vim.keymap.set('n', '<leader>jwm', function()
+        builtin.lsp_workspace_symbols { symbols = { 'method', 'function', 'constructor' } }
+      end, {
+        desc = '[J]ump to [w]orkspace [m]ethod',
       })
       vim.keymap.set('n', '<leader>jt', function()
         builtin.lsp_document_symbols { symbols = { 'method', 'constructor', 'constant', 'function', 'property' } }
