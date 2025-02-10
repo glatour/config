@@ -72,3 +72,9 @@ vim.keymap.set('n', '+', [[<cmd>horizontal resize +2<cr>]]) -- make the window b
 vim.keymap.set('n', '_', [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally by pressing shift and -
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
+
+-- blackhole
+vim.keymap.set('v', 'c', '"_c', options)
+vim.keymap.set('v', 'C', '"_C', options)
+vim.keymap.set('n', 'c', '"_c', options)
+vim.keymap.set('n', 'C', '"_C', options)
