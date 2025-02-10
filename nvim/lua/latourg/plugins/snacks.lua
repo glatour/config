@@ -95,6 +95,7 @@ return { -- lazy.nvim
             auto_close = true,
             layout = {
               preset = 'vertical',
+              preview = true,
             },
           }
         end,

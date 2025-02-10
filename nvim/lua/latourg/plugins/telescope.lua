@@ -208,29 +208,4 @@ return {
       })
     end,
   },
-  -- {
-  --   'nvim-telescope/telescope-file-browser.nvim',
-  --   lazy = false,
-  --   dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
-  -- },
-  -- https://github.com/nvim-telescope/telescope-project.nvim
-  -- {
-  --   'nvim-telescope/telescope-project.nvim',
-  --   lazy = false,
-  --   dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
-  --   config = function()
-  --     require('telescope').setup {
-  --       extensions = {
-  --         project = {
-  --           base_dirs = {
-  --             '~/Code',
-  --           },
-  --           persisted = {
-  --             layout_config = { width = 0.55, height = 0.55 },
-  --           },
-  --         },
-  --       },
-  --     }
-  --   end,
-  -- },
 }
