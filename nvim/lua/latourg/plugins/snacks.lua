@@ -30,13 +30,18 @@ return { -- lazy.nvim
           },
         },
         layout = {
-          -- backdrop = true,
+          backdrop = true,
         },
         formatters = {
           file = {
             filename_first = true,
           },
         },
+      },
+      terminal = {
+        -- your terminal configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
       },
     },
     keys = {
@@ -449,11 +454,18 @@ return { -- lazy.nvim
         desc = 'Toggle lazygit log file view',
       },
       {
-        '<leader>fff',
+        '<leader>ts',
         function()
-          Snacks.picker.flash()
+          Snacks.picker.treesitter()
         end,
-        desc = 'Toggle lazygit log file view',
+        desc = 'Treesitter',
+      },
+      {
+        '<leader>tf',
+        function()
+          Snacks.terminal.open()
+        end,
+        desc = 'Terminal',
       },
     },
   },

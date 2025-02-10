@@ -118,8 +118,9 @@ return {
         },
       }
 
-      options = vim.tbl_deep_extend('force', options, require 'nvchad.cmp')
-      require('cmp').setup(options)
+      -- options = vim.tbl_deep_extend('force', options, require 'nvchad.cmp')
+      -- require('cmp').setup(options)
+      require('cmp').setup()
     end,
   },
 }

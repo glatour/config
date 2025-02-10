@@ -195,9 +195,11 @@ require('lazy').setup({ -- NOTE: Plugins can be added with a link (or for a gith
 
 -- vim: ts=2 sts=2 sw=2 et
 -- vim.cmd 'colorscheme everforest'
+-- vim.cmd 'colorscheme kanagawa-paper'
+vim.cmd 'colorscheme kanagawa'
 -- (method 1, For heavy lazyloaders)
 -- dofile(vim.g.base46_cache .. 'defaults')
 -- dofile(vim.g.base46_cache .. 'statusline')
-for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
-  dofile(vim.g.base46_cache .. v)
-end
+-- for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
+--   dofile(vim.g.base46_cache .. v)
+-- end
