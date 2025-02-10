@@ -68,15 +68,15 @@ return {
               ['<c-enter>'] = 'to_fuzzy_refine',
               ['<C-é>'] = 'which_key',
               -- ['<c-d>'] = require('telescope.actions').delete_buffer,
-              ["<C-b>"] = function(...)
-                return require("telescope.actions").delete_buffer(...)
+              ['<C-b>'] = function(...)
+                return require('telescope.actions').delete_buffer(...)
               end,
             },
             n = {
-              ["<C-b>"] = function(...)
-                return require("telescope.actions").delete_buffer(...)
+              ['<C-b>'] = function(...)
+                return require('telescope.actions').delete_buffer(...)
               end,
-            }
+            },
           },
         },
         pickers = {
@@ -102,6 +102,7 @@ return {
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'persisted')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -127,12 +128,9 @@ return {
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, {
         desc = '[S]earch [D]iagnostics',
       })
-      vim.keymap.set(
-        "n",
-        "<leader>sde",
-        function() require("telescope.builtin").diagnostics({ severity = "error" }) end,
-        { desc = "[S]earch [D]iagnostics [E]rror" }
-      )
+      vim.keymap.set('n', '<leader>sde', function()
+        require('telescope.builtin').diagnostics { severity = 'error' }
+      end, { desc = '[S]earch [D]iagnostics [E]rror' })
       vim.keymap.set('n', '<leader>st', builtin.treesitter, {
         desc = '[S]earch [T]reesitter',
       })
@@ -227,6 +225,9 @@ return {
           project = {
             base_dirs = {
               '~/Code',
+            },
+            persisted = {
+              layout_config = { width = 0.55, height = 0.55 },
             },
           },
         },

@@ -19,18 +19,18 @@ end, {
   desc = 'toggle floating terminal',
 })
 
-vim.keymap.set('n', '<Leader>tl', function()
-  require('nvchad.term').toggle {
-    id = 'tl',
-    pos = 'float',
-    cmd = 'lazygit',
-    float_opts = {
-      row = 0.1,
-      col = 0.1,
-      width = 0.8,
-      height = 0.65,
-    },
-  }
-end, {
-  desc = 'toggle lazygit',
-})
+-- vim.keymap.set('n', '<Leader>tl', function()
+--   require('nvchad.term').toggle {
+--     id = 'tl',
+--     pos = 'float',
+--     cmd = 'lazygit',
+--     float_opts = {
+--       row = 0.1,
+--       col = 0.1,
+--       width = 0.8,
+--       height = 0.65,
+--     },
+--   }
+-- end, {
+--   desc = 'toggle lazygit',
+-- })
