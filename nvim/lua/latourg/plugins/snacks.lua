@@ -43,6 +43,11 @@ return { -- lazy.nvim
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
       },
+      toggle = {
+        -- your toggle configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      },
     },
     keys = {
       -- Top Pickers & Explorer
@@ -453,6 +458,7 @@ return { -- lazy.nvim
         end,
         desc = 'Toggle lazygit log file view',
       },
+      -- treesitter
       {
         '<leader>ts',
         function()
@@ -460,6 +466,7 @@ return { -- lazy.nvim
         end,
         desc = 'Treesitter',
       },
+      -- terminal
       {
         '<leader>tf',
         function()
@@ -467,6 +474,7 @@ return { -- lazy.nvim
         end,
         desc = 'Terminal',
       },
+      -- toggle
     },
   },
 }
