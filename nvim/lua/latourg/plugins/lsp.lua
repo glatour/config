@@ -184,6 +184,7 @@ return {
           },
         },
       },
+      ts_ls = {},
       terraformls = {},
       lua_ls = {
         settings = {
@@ -225,7 +226,7 @@ return {
         'eslint_d',
         'html-lsp',
         'prettier',
-        -- 'ts_ls',
+        'ts_ls',
         'volar',
         -- 'ember-language-server',
         'biome',
@@ -243,5 +244,6 @@ return {
         end,
       },
     }
+    require('lspconfig').emmet_language_server.setup {}
   end,
 }

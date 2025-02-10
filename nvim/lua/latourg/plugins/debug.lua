@@ -16,9 +16,9 @@ return {
       return {
         -- Basic debugging keymaps, feel free to change to your liking!
         { '<F5>', dap.continue, desc = 'Debug: Start/Continue' },
-        { '<F11>', dap.step_into, desc = 'Debug: Step Into' },
-        { '<F10>', dap.step_over, desc = 'Debug: Step Over' },
-        { '<Shift><F11>', dap.step_out, desc = 'Debug: Step Out' },
+        { '<F2>', dap.step_into, desc = 'Debug: Step Into' },
+        { '<F3>', dap.step_over, desc = 'Debug: Step Over' },
+        { '<Shift><F2>', dap.step_out, desc = 'Debug: Step Out' },
         { '<leader>b', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
         { '<leader>cb', dap.clear_breakpoints, desc = 'Debug: Clear Breakpoints' },
         {
@@ -29,14 +29,14 @@ return {
           desc = 'Debug: Set Breakpoint',
         },
         {
-          '<F3>',
+          '<F4>',
           function()
             dapui.eval()
           end,
           desc = 'Debug: Float Element',
         },
         {
-          '<F2>',
+          '<F6>',
           function()
             dapui.float_element 'stacks'
           end,
