@@ -5,12 +5,12 @@ return {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     'williamboman/mason-lspconfig.nvim',
     'Hoffs/omnisharp-extended-lsp.nvim', -- NOTE: Used by omnisharp
+    'saghen/blink.cmp',
     -- Allows extra capabilities provided by nvim-cmp
-    'hrsh7th/cmp-nvim-lsp',
-    'SmiteshP/nvim-navbuddy',
-    'SmiteshP/nvim-navic',
+    -- 'hrsh7th/cmp-nvim-lsp',
+    -- 'SmiteshP/nvim-navbuddy',
+    -- 'SmiteshP/nvim-navic',
     'MunifTanjim/nui.nvim',
-    opts = { lsp = { auto_attach = true } },
   },
   config = function()
     -- Diagnostic message setup
@@ -30,12 +30,13 @@ return {
       virtual_text = false,
     }
 
-    local navbuddy = require 'nvim-navbuddy'
-    require('lspconfig').clangd.setup {
-      on_attach = function(client, bufnr)
-        navbuddy.attach(client, bufnr)
-      end,
-    }
+    -- local navbuddy = require 'nvim-navbuddy'
+    -- require('lspconfig').clangd.setup {
+    --   on_attach = function(client, bufnr)
+    --     navbuddy.attach(client, bufnr)
+    --   end,
+    -- }
+
     -- On Lsp Attach, add keymaps and highlight capabilities
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -54,6 +55,8 @@ return {
           mode = mode or 'n'
           vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
         end
+
+        -- omnisharp
         if client and client.name == 'omnisharp' then
           fidget.notify 'Omnisharp is attaching...'
           map('gd', require('omnisharp_extended').telescope_lsp_definition, '[G]oto [D]efinition')
@@ -63,12 +66,13 @@ return {
         else
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
           map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
           -- Jump to the type of the word under your cursor.
+          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
           map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
         end
+
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
         map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
@@ -84,6 +88,7 @@ return {
         -- WARN: This is not Goto Definition, this is Goto Declaration.
         --  For example, in C this would take you to the header.
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
         --    See `:help CursorHold` for information about when this is executed
@@ -97,6 +102,7 @@ return {
             fidget.notify('highlight clear failed', vim.log.levels.INFO)
           end
         end
+
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
           local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
@@ -118,6 +124,7 @@ return {
             end,
           })
         end
+
         -- The following code creates a keymap to toggle inlay hints in your
         -- code, if the language server you are using supports them
         --
@@ -129,12 +136,14 @@ return {
         end
       end,
     })
+
     -- LSP servers and clients are able to communicate to each other what features they support.
     --  By default, Neovim doesn't support everything that is in the LSP specification.
     --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
     --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').default_capabilities())
+
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
     --
@@ -239,11 +248,24 @@ return {
           -- This handles overriding only values explicitly passed
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for ts_ls)
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+          -- server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+
+          -- passing in the capabilities merges with the blink ones
+          server.capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+
           require('lspconfig')[server_name].setup(server)
         end,
       },
     }
+
     require('lspconfig').emmet_language_server.setup {}
+
+    local lspconfig = require 'lspconfig'
+    for server, config in pairs(servers) do
+      -- passing config.capabilities to blink.cmp merges with the capabilities in your
+      -- `opts[server].capabilities, if you've defined it
+      config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+      lspconfig[server].setup(config)
+    end
   end,
 }
