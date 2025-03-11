@@ -2,7 +2,7 @@
 
 ## tmux
 
-ln -s ~/code/config/.tmux/.tmux.conf ~/.config/tmux/tmux.conf
+ln -s ~/code/config/.tmux/.tmux.conf ~/.tmux.conf
 
 ## nvim
 
