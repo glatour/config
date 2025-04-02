@@ -67,4 +67,35 @@ return {
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
+  -- {
+  --   'otavioschwanck/arrow.nvim',
+  --   dependencies = {
+  --     { 'nvim-tree/nvim-web-devicons' },
+  --     -- or if using `mini.icons`
+  --     -- { "echasnovski/mini.icons" },
+  --   },
+  --   opts = {
+  --     show_icons = true,
+  --     leader_key = ';', -- Recommended to be a single key
+  --     buffer_leader_key = 'm', -- Per Buffer Mappings
+  --   },
+  -- },
+  {
+    'cbochs/grapple.nvim',
+    dependencies = {
+      { 'nvim-tree/nvim-web-devicons' },
+    },
+    opts = {
+      scope = 'git_branch',
+      icons = true,
+      quick_select = '123456789',
+    },
+    keys = {
+      { ';', '<cmd>Grapple toggle_tags<cr>', desc = 'Toggle tags menu' },
+
+      { '<c-s>', '<cmd>Grapple toggle<cr>', desc = 'Toggle tag' },
+      { 'H', '<cmd>Grapple cycle_tags next<cr>', desc = 'Go to next tag' },
+      { 'L', '<cmd>Grapple cycle_tags prev<cr>', desc = 'Go to previous tag' },
+    },
+  },
 }
