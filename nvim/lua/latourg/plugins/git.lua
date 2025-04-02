@@ -4,6 +4,9 @@
 
 return {
   {
+    'sindrets/diffview.nvim',
+  },
+  {
     'lewis6991/gitsigns.nvim',
     opts = {
       on_attach = function(bufnr)
