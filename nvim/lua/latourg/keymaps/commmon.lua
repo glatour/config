@@ -64,12 +64,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
--- vim.cmd 'autocmd! TermOpen term://* lua set_terminal_keymaps()'
-vim.keymap.set('n', '=', [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
-vim.keymap.set('n', '-', [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
-vim.keymap.set('n', '+', [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally by pressing shift and =
-vim.keymap.set('n', '_', [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally by pressing shift and -
+vim.keymap.set('n', '=', [[<cmd>vertical resize +10<cr>]]) -- make the window biger vertically
+vim.keymap.set('n', '-', [[<cmd>vertical resize -10<cr>]]) -- make the window smaller vertically
+-- vim.keymap.set('n', '+', [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally by pressing shift and =
+-- vim.keymap.set('n', '_', [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally by pressing shift and -
+
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 
@@ -78,3 +77,26 @@ vim.keymap.set('v', 'c', '"_c', options)
 vim.keymap.set('v', 'C', '"_C', options)
 vim.keymap.set('n', 'c', '"_c', options)
 vim.keymap.set('n', 'C', '"_C', options)
+
+-- copilot
+-- Quick chat keybinding
+vim.keymap.set('n', '<leader>ccq', function()
+  local input = vim.fn.input 'Quick Chat: '
+  if input ~= '' then
+    require('CopilotChat').ask(input, {
+      selection = require('CopilotChat.select').buffer,
+    })
+  end
+end, { desc = 'CopilotChat - Quick chat' })
+
+vim.keymap.set('n', '<leader>E', function()
+  MiniFiles.open()
+  -- local input = vim.fn.input 'Quick Chat: '
+  -- if input ~= '' then
+  --   require('CopilotChat').ask(input, {
+  --     selection = require('CopilotChat.select').buffer,
+  --   })
+  -- end
+end, { desc = 'MiniFiles - open' })
+
+vim.keymap.set('n', '<leader>oi', '<CMD>Oil --float <CR>', { desc = 'Open parent directory' })
