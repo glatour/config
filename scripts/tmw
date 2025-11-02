@@ -1,0 +1,28 @@
+#!/bin/bash
+
+read FOLDER
+echo "$FOLDER"
+
+SESSION_NAME=$(basename $FOLDER)
+SESSION_NAME=${SESSION_NAME//\.}
+
+echo "$FOLDER"
+tmux has-session -t $SESSION_NAME 2>/dev/null
+
+if [ $? != 0 ]; then
+  echo "Creating tmux session: $SESSION_NAME"
+  tmux new-session -d -s $SESSION_NAME -c $FOLDER -x- -y-
+
+  tmux split-window -v -t $SESSION_NAME:1.1 -c $FOLDER
+  tmux split-window -h -t $SESSION_NAME:1.2 -c $FOLDER
+
+  tmux send-keys -t $SESSION_NAME:1.1 "nvim" C-m
+  tmux send-keys -t $SESSION_NAME:1.3 "lazygit" C-m
+
+  tmux select-pane -t $SESSION_NAME:1.1 
+  tmux resize-pane -t $SESSION_NAME:1.2 -y 3
+fi
+if [ -t 2 ]; then
+   exec <> "$(tty < /dev/stderr)"
+fi
+tmux attach -t $SESSION_NAME

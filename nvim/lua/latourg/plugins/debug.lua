@@ -1,5 +1,4 @@
 return {
-  -- },
   {
     'mfussenegger/nvim-dap',
     dependencies = {
@@ -16,8 +15,8 @@ return {
       return {
         -- Basic debugging keymaps, feel free to change to your liking!
         { '<F5>', dap.continue, desc = 'Debug: Start/Continue' },
-        { '<F2>', dap.step_into, desc = 'Debug: Step Into' },
-        { '<F3>', dap.step_over, desc = 'Debug: Step Over' },
+        { '<F2>', dap.step_over, desc = 'Debug: Step Over' },
+        { '<F3>', dap.step_into, desc = 'Debug: Step Into' },
         { '<Shift><F2>', dap.step_out, desc = 'Debug: Step Out' },
         { '<leader>b', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
         { '<leader>cb', dap.clear_breakpoints, desc = 'Debug: Clear Breakpoints' },

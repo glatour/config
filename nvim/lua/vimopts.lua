@@ -67,4 +67,6 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
+
+vim.diagnostic.config { virtual_text = false, virtual_lines = false, underline = false }

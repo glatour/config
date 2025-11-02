@@ -34,6 +34,7 @@ return {
       local neotest_ns = vim.api.nvim_create_namespace 'neotest'
       vim.diagnostic.config({
         {
+          virtual_text = false,
           format = function(diagnostic)
             -- Replace newline and tab characters with space for more compact diagnostics
             local message = diagnostic.message:gsub('\n', ' '):gsub('\t', ' '):gsub('%s+', ' '):gsub('^%s+', '')

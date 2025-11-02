@@ -1,5 +1,61 @@
 return {
   {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    dependencies = {
+      { 'github/copilot.vim' }, -- or zbirenbaum/copilot.lua
+      { 'nvim-lua/plenary.nvim', branch = 'master' }, -- for curl, log and async functions
+    },
+    build = 'make tiktoken', -- Only on MacOS or Linux
+    opts = {
+      model = 'o3-mini',
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+    keys = {
+      {
+        '<leader>zc',
+        ':CopilotChat<CR>',
+        mode = 'n',
+        desc = 'Copilot Chat',
+      },
+      {
+        '<leader>ze',
+        ':CopilotChatExplain<CR>',
+        mode = 'n',
+        desc = 'Copilot Explain',
+      },
+      {
+        '<leader>zr',
+        ':CopilotChatReview<CR>',
+        mode = 'n',
+        desc = 'Copilot Review',
+      },
+      {
+        '<leader>zf',
+        ':CopilotChatFix<CR>',
+        mode = 'v',
+        desc = 'Copilot Fix',
+      },
+      {
+        '<leader>zo',
+        ':CopilotChatOptimize<CR>',
+        mode = 'v',
+        desc = 'Copilot Optimize',
+      },
+      {
+        '<leader>zd',
+        ':CopilotChatDocs<CR>',
+        mode = 'v',
+        desc = 'Copilot Docs',
+      },
+      {
+        '<leader>zt',
+        ':CopilotChatTest<CR>',
+        mode = 'v',
+        desc = 'Copilot Test',
+      },
+    },
+  },
+  {
     'stevearc/overseer.nvim',
     opts = {},
     config = function()
@@ -17,22 +73,21 @@ return {
       signs = false,
     },
   },
-  { --https://github.com/hedyhli/outline.nvim
-    'hedyhli/outline.nvim',
-    config = function()
-      -- Example mapping to toggle outline
-      vim.keymap.set('n', '<leader>oo', '<cmd>Outline<CR>', { desc = 'Toggle Outline' })
-
-      require('outline').setup {
-        -- Your setup opts here (leave empty to use defaults)
-        outline_window = {
-          auto_jump = true,
-        },
-      }
-    end,
-  },
+  -- { --https://github.com/hedyhli/outline.nvim
+  --   'hedyhli/outline.nvim',
+  --   config = function()
+  --     -- Example mapping to toggle outline
+  --     vim.keymap.set('n', '<leader>oo', '<cmd>Outline<CR>', { desc = 'Toggle Outline' })
+  --
+  --     require('outline').setup {
+  --       -- Your setup opts here (leave empty to use defaults)
+  --       outline_window = {
+  --         auto_jump = true,
+  --       },
+  --     }
+  --   end,
+  -- },
   { 'jose-elias-alvarez/typescript.nvim', lazy = true }, -- add lsp plugin
-  -- https://github.com/rmagatti/goto-preview
   {
     'rmagatti/goto-preview',
     event = 'BufEnter',
@@ -106,5 +161,10 @@ return {
         desc = 'Quickfix List (Trouble)',
       },
     },
+  },
+  {
+    'NStefan002/speedtyper.nvim',
+    branch = 'v2',
+    lazy = false,
   },
 }
