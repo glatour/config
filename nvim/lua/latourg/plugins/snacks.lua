@@ -30,7 +30,7 @@ return { -- lazy.nvim
           },
         },
         layout = {
-          backdrop = true,
+          backdrop = false,
         },
         formatters = {
           file = {
@@ -47,6 +47,34 @@ return { -- lazy.nvim
         -- your toggle configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
+      },
+      -- https://github.com/folke/snacks.nvim/blob/main/docs/zen.md
+      zen = {
+        toggles = {
+          dim = true,
+          git_signs = false,
+          mini_diff_signs = false,
+          -- diagnostics = false,
+          -- inlay_hints = false,
+        },
+      },
+    },
+    styles = {
+      zen = {
+        enter = true,
+        fixbuf = false,
+        minimal = true,
+        width = 80,
+        height = 0,
+        backdrop = { transparent = false, blend = 40 },
+        keys = { q = false },
+        zindex = 40,
+        wo = {
+          winhighlight = 'NormalFloat:Normal',
+        },
+        w = {
+          snacks_main = true,
+        },
       },
     },
     keys = {
@@ -475,7 +503,21 @@ return { -- lazy.nvim
         end,
         desc = 'Terminal',
       },
-      -- toggle
+      -- zen
+      {
+        '<leader>tz',
+        function()
+          Snacks.zen.zen()
+        end,
+        desc = 'Zen',
+      },
+      {
+        '<leader>to',
+        function()
+          Snacks.zen.zoom()
+        end,
+        desc = 'Zoom',
+      },
     },
   },
 }
