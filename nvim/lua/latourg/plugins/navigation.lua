@@ -1,5 +1,9 @@
 return {
-  -- https://github.com/folke/flash.nvim
+  {
+    'chentoast/marks.nvim',
+    event = 'VeryLazy',
+    opts = {},
+  }, -- https://github.com/folke/flash.nvim
   {
     'folke/flash.nvim',
     event = 'VeryLazy',

@@ -1,0 +1,48 @@
+#|
+This minimal config changes Caps Lock to act as Caps Lock on quick tap, but
+if held, it will act as Left Ctrl. It also changes the backtick/grave key to
+act as backtick/grave on quick tap, but change ijkl keys to arrow keys on hold.
+
+This text between the two pipe+octothorpe sequences is a multi-line comment.
+|#
+
+;; Text after double-semicolons are single-line comments.
+
+#|
+One defcfg entry may be added, which is used for configuration key-pairs. These
+configurations change kanata's behaviour at a more global level than the other
+configuration entries.
+|#
+
+(defcfg
+  process-unmapped-keys yes
+  log-layer-changes yes
+
+)
+
+(defsrc
+  caps 
+  h j k l
+)
+
+(deflayer default
+  @cap 
+  _ _ _ _
+)
+
+(deflayer arrows
+  @cap 
+  left down up right
+)
+
+(defalias
+  : S-;
+  8 8
+  0 0
+
+  cap (tap-hold-press 200 200 caps (layer-toggle arrows))
+  ;; zi (macro ;;, l i)
+  
+  ;; Type "http://localhost:8080"
+  lch (macro h t t p @: / / 100 l o c a l h o s t @: @8 @0 @8 @0)
+)
