@@ -7,54 +7,88 @@ return {
     },
     build = 'make tiktoken', -- Only on MacOS or Linux
     opts = {
-      model = 'o3-mini',
+      -- See Configuration section for options
     },
     -- See Commands section for default commands if you want to lazy load on them
-    keys = {
-      {
-        '<leader>zc',
-        ':CopilotChat<CR>',
-        mode = 'n',
-        desc = 'Copilot Chat',
-      },
-      {
-        '<leader>ze',
-        ':CopilotChatExplain<CR>',
-        mode = 'n',
-        desc = 'Copilot Explain',
-      },
-      {
-        '<leader>zr',
-        ':CopilotChatReview<CR>',
-        mode = 'n',
-        desc = 'Copilot Review',
-      },
-      {
-        '<leader>zf',
-        ':CopilotChatFix<CR>',
-        mode = 'v',
-        desc = 'Copilot Fix',
-      },
-      {
-        '<leader>zo',
-        ':CopilotChatOptimize<CR>',
-        mode = 'v',
-        desc = 'Copilot Optimize',
-      },
-      {
-        '<leader>zd',
-        ':CopilotChatDocs<CR>',
-        mode = 'v',
-        desc = 'Copilot Docs',
-      },
-      {
-        '<leader>zt',
-        ':CopilotChatTest<CR>',
-        mode = 'v',
-        desc = 'Copilot Test',
-      },
-    },
+    config = function()
+      require('snacks.picker').setup {
+        ui_select = true,
+      }
+
+      require('CopilotChat').setup {
+        -- Core functionality
+        model = 'claude-sonnet-4.5',
+
+        -- Window configuration
+        window = {
+          layout = 'vertical', -- 'vertical', 'horizontal', 'float', 'replace'
+          width = 0.5, -- Width of chat window (relative or absolute)
+          height = 0.5, -- Height of chat window (relative or absolute)
+        },
+
+        -- Interface settings
+        show_help = true, -- Show help message in chat
+        highlight_selection = true, -- Highlight code selection
+        auto_follow_cursor = true, -- Auto-follow cursor in chat
+      }
+    end,
   },
+  -- {
+  --   'CopilotC-Nvim/CopilotChat.nvim',
+  --   dependencies = {
+  --     { 'github/copilot.vim' }, -- or zbirenbaum/copilot.lua
+  --     { 'nvim-lua/plenary.nvim', branch = 'master' }, -- for curl, log and async functions
+  --   },
+  --   build = 'make tiktoken', -- Only on MacOS or Linux
+  --   opts = {
+  --     model = 'o3-mini',
+  --   },
+  --   -- See Commands section for default commands if you want to lazy load on them
+  --   keys = {
+  --     {
+  --       '<leader>zc',
+  --       ':CopilotChat<CR>',
+  --       mode = 'n',
+  --       desc = 'Copilot Chat',
+  --     },
+  --     {
+  --       '<leader>ze',
+  --       ':CopilotChatExplain<CR>',
+  --       mode = 'n',
+  --       desc = 'Copilot Explain',
+  --     },
+  --     {
+  --       '<leader>zr',
+  --       ':CopilotChatReview<CR>',
+  --       mode = 'n',
+  --       desc = 'Copilot Review',
+  --     },
+  --     {
+  --       '<leader>zf',
+  --       ':CopilotChatFix<CR>',
+  --       mode = 'v',
+  --       desc = 'Copilot Fix',
+  --     },
+  --     {
+  --       '<leader>zo',
+  --       ':CopilotChatOptimize<CR>',
+  --       mode = 'v',
+  --       desc = 'Copilot Optimize',
+  --     },
+  --     {
+  --       '<leader>zd',
+  --       ':CopilotChatDocs<CR>',
+  --       mode = 'v',
+  --       desc = 'Copilot Docs',
+  --     },
+  --     {
+  --       '<leader>zt',
+  --       ':CopilotChatTest<CR>',
+  --       mode = 'v',
+  --       desc = 'Copilot Test',
+  --     },
+  --   },
+  -- },
   {
     'stevearc/overseer.nvim',
     opts = {},
