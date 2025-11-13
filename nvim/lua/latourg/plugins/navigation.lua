@@ -82,6 +82,8 @@ return {
       quick_select = '123456789',
     },
     keys = {
+      -- { ';', '<cmd>Grapple toggle_tags<cr>', desc = 'Toggle tags menu' },
+
       { '<c-s>', '<cmd>Grapple toggle<cr>', desc = 'Toggle tag' },
       { 'H', '<cmd>Grapple cycle_tags next<cr>', desc = 'Go to next tag' },
       { 'L', '<cmd>Grapple cycle_tags prev<cr>', desc = 'Go to previous tag' },
