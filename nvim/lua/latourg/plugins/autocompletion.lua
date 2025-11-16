@@ -1,16 +1,13 @@
 return {
   'saghen/blink.cmp',
-  dependencies = {
-    'L3MON4D3/LuaSnip',
-    version = 'v2.*',
-  },
+  dependencies = { 'rafamadriz/friendly-snippets' },
 
   version = 'v0.*',
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    keymap = { preset = 'enter' },
+    keymap = { preset = 'default' },
 
     appearance = {
       use_nvim_cmp_as_default = false,
@@ -24,15 +21,18 @@ return {
       -- optionally disable cmdline completions
       -- cmdline = {},
     },
-
-    snippets = {
-      preset = 'luasnip',
-    },
-
-    fuzzy = {
-      use_frecency = true,
-      use_proximity = true,
-    },
+    --
+    -- snippets = {
+    --   preset = 'luasnip',
+    -- },
+    --
+    -- fuzzy = {
+    --   use_frecency = true,
+    --   use_proximity = true,
+    --
+    --   fuzzy = { implementation = 'prefer_rust_with_warning' },
+    -- },
+    fuzzy = { implementation = 'prefer_rust_with_warning' },
 
     -- experimental signature help support
     signature = { enabled = true },

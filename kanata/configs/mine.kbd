@@ -1,4 +1,10 @@
 #|
+https://github.com/jtroo/kanata/blob/main/docs/config.adoc
+https://github.com/jtroo/kanata/blob/main/cfg_samples/colemak.kbd
+https://github.com/jtroo/kanata/wiki/Configuration-guide
+
+
+
 This minimal config changes Caps Lock to act as Caps Lock on quick tap, but
 if held, it will act as Left Ctrl. It also changes the backtick/grave key to
 act as backtick/grave on quick tap, but change ijkl keys to arrow keys on hold.
@@ -21,28 +27,35 @@ configuration entries.
 )
 
 (defsrc
-  caps 
-  h j k l
+  tab r i o
+  caps h j k l
+  z
 )
 
 (deflayer default
-  @cap 
-  _ _ _ _
+  @tab _ _ _
+  lctl _ _ _ _
+  @ztoctrl
 )
 
 (deflayer arrows
-  @cap 
-  left down up right
+  _ _ _ _
+  @cap left down up right
+  _
+)
+
+(deflayer dev
+  @tab lrld @lazygit @tmuxzoom
+  _ left down up right
+  _
 )
 
 (defalias
-  : S-;
-  8 8
-  0 0
+  lazygit (macro , l o)
+  tmuxzoom (macro , z o)
+  ztoctrl (tap-hold-press 200 200 z lctl)
 
   cap (tap-hold-press 200 200 caps (layer-toggle arrows))
-  ;; zi (macro ;;, l i)
-  
-  ;; Type "http://localhost:8080"
-  lch (macro h t t p @: / / 100 l o c a l h o s t @: @8 @0 @8 @0)
+  tab (tap-hold-press 200 200 tab (layer-toggle dev))
 )
+
